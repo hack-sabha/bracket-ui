@@ -1,0 +1,22 @@
+<h2>My Tournaments</h2>
+<div>
+  <label>Tournament name:</label> <input #tournamentName />
+  <button (click)="add(tournamentName.value); tournamentName.value=''">
+    Add
+  </button>
+</div>
+<ul class="tournaments">
+  <li *ngFor="let tournament of tournaments" (click)="onSelect(tournament)"
+      [class.selected]="tournament === selectedTournament">
+    <span class="badge">{{tournament.id}}</span>
+    <span>{{tournament.name}}</span>
+    <button class="delete"
+      (click)="delete(tournament); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedTournament">
+  <h2>
+    {{selectedTournament.name | uppercase}} is my tournament
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
