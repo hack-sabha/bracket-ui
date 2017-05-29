@@ -1,0 +1,21 @@
+sudo: required
+language: node_js
+node_js:
+  - "7.9"
+services:
+  - docker
+branches:
+  only:
+    - master
+env:
+  global:
+    - REPO=avinashkollu/tourpark-ui
+before_script:
+  - npm install -g @angular/cli
+script:
+  - ng build --prod
+  - docker build -t $REPO .
+after_success:
+  - docker images
+  - docker login -e="avinashkollu@gmail.com" -u="avinashkollu" -p="tourpark"
+  - docker push $REPO
