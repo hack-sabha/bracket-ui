@@ -4,12 +4,14 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Tournament } from '../components/tournament/tournament';
+import { Sport } from '../components/tournament/sport';
 
 @Injectable()
 export class TournamentService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private tournamentsUrl = 'api/tournaments';  // URL to web api
+  private sportsUrl = 'api/sports';  // URL to web api
 
   constructor(private http: Http) { }
 
@@ -20,6 +22,12 @@ export class TournamentService {
                .catch(this.handleError);
   }
 
+  getSports(): Promise<Sport[]> {
+      return this.http.get(this.sportsUrl)
+          .toPromise()
+          .then(response => response.json().data as Sport[])
+          .catch(this.handleError);
+  }
 
   getTournament(id: number): Promise<Tournament> {
     const url = `${this.tournamentsUrl}/${id}`;
@@ -37,9 +45,9 @@ export class TournamentService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Tournament> {
+  create(name: string, type: number, sportId: number, participantCount: number): Promise<Tournament> {
     return this.http
-      .post(this.tournamentsUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .post(this.tournamentsUrl, JSON.stringify({ name: name, type: type, sportId: sportId, participantCount: participantCount}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data as Tournament)
       .catch(this.handleError);
