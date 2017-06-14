@@ -2,31 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
 import { Tournament }                from './tournament';
+import { Sport }                from './sport';
+import { TournamentType }       from './TournamentType';
 import { TournamentService }         from '../../services/tournament.service';
 
 @Component({
-    selector: 'my-tournament',
+  selector: 'my-tournament',
   templateUrl: './tournament.component.html',
   styleUrls: [ './tournament.component.css' ]
 })
 export class TournamentComponent implements OnInit {
   tournaments: Tournament[];
+  sports: Sport[];
   selectedTournament: Tournament;
 
   constructor(
     private tournamentService: TournamentService,
     private router: Router) { }
 
-  getTournamentes(): void {
+  getTournaments(): void {
     this.tournamentService
         .getTournaments()
         .then(tournaments => this.tournaments = tournaments);
   }
 
-  add(name: string): void {
+  getSports(): void {
+      this.tournamentService
+          .getSports()
+          .then(sports => this.sports = sports);
+  }
+
+  add(name: string, type: number, sportId: number, participantCount: number): void {
     name = name.trim();
     if (!name) { return; }
-    this.tournamentService.create(name)
+    this.tournamentService.create(name, type, sportId, participantCount)
       .then(tournament => {
         this.tournaments.push(tournament);
         this.selectedTournament = null;
@@ -43,7 +52,8 @@ export class TournamentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTournamentes();
+      this.getTournaments();
+      this.getSports();
   }
 
   onSelect(tournament: Tournament): void {

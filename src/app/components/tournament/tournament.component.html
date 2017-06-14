@@ -1,15 +1,23 @@
 <h2>My Tournaments</h2>
 <div>
-  <label>Tournament name:</label> <input #tournamentName />
-  <button (click)="add(tournamentName.value); tournamentName.value=''">
+  <label>Name:</label> <input #tournamentName />
+  <label>Type:</label> <input #tournamentType />
+  <label>Sport:</label> <input #tournamentSport />
+  <label>Participants:</label> <input #tournamentParticipants />
+  <select>
+    <option *ngFor="let sport of sports" [ngValue]="sport.sportId">{{sport.name}}</option>
+  </select>
+  <button (click)="add(tournamentName.value, tournamentType.value, tournamentSport.value, tournamentParticipants.value); tournamentName.value=''">
     Add
   </button>
 </div>
 <ul class="tournaments">
   <li *ngFor="let tournament of tournaments" (click)="onSelect(tournament)"
       [class.selected]="tournament === selectedTournament">
-    <span class="badge">{{tournament.id}}</span>
-    <span>{{tournament.name}}</span>
+    <span class="badge">{{tournament.name}}</span>
+    <span>{{tournament.type}}</span>
+    <span class="badge">{{tournament.sport.name}}</span>
+    <span>{{tournament.participantCount}}</span>
     <button class="delete"
       (click)="delete(tournament); $event.stopPropagation()">x</button>
   </li>
