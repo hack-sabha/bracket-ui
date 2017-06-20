@@ -3,7 +3,7 @@
   <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
   <div>
     <div *ngFor="let tournament of tournamentes | async"
-         (click)="gotoDetail(tournament)" class="search-result" >
+         (click)="gotoDetail(tournament)" class="search-result">
       {{tournament.name}}
     </div>
   </div>

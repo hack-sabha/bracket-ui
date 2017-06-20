@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class TparkUIPage {
+export class TournamentUiPage {
   navigateTo() {
     return browser.get('/');
   }

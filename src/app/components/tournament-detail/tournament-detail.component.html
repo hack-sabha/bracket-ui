@@ -1,11 +1,12 @@
 <div *ngIf="tournament">
   <h2>{{tournament.name}} details!</h2>
   <div>
-    <label>id: </label>{{tournament.id}}</div>
+    <label>id: </label>{{tournament.id}}
+  </div>
   <div>
     <label>name: </label>
     <input [(ngModel)]="tournament.name" placeholder="name" />
-   </div>
+  </div>
   <button (click)="goBack()">Back</button>
   <button (click)="save()">Save</button>
 </div>
