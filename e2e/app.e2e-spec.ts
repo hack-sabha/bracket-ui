@@ -1,10 +1,10 @@
-import { TparkUIPage } from './app.po';
+import { TournamentUiPage } from './app.po';
 
-describe('tpark-ui App', () => {
-  let page: TparkUIPage;
+describe('tournament-ui App', () => {
+  let page: TournamentUiPage;
 
   beforeEach(() => {
-    page = new TparkUIPage();
+    page = new TournamentUiPage();
   });
 
   it('should display message saying app works', () => {

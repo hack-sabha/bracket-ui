@@ -4,9 +4,15 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "../node_modules/@types/"
+    ]
   },
+  "compileOnSave": true,
   "exclude": [
+    "node_modules/*",
     "test.ts",
     "**/*.spec.ts"
   ]

@@ -1,6 +1,6 @@
 <h3>Top Tournaments</h3>
 <div class="grid grid-pad">
-  <a *ngFor="let tournament of tournaments"  [routerLink]="['/detail', tournament.id]"  class="col-1-4">
+  <a *ngFor="let tournament of tournaments" [routerLink]="['/detail', tournament.id]" class="col-1-4">
     <div class="module tournament">
       <h4>{{tournament.name}}</h4>
     </div>
