@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TournamentComponent } from './components/tournament/tournament.component';
 import { TournamentDetailComponent } from './components/tournament-detail/tournament-detail.component';
 import { TournamentSearchComponent } from './components/tournament-search/tournament-search.component';
+import { TournamentCreateComponent } from './components/tournament-create/tournament-create.component';
 
 import { TournamentService }          from './services/tournament.service';
 
@@ -34,9 +35,10 @@ import { TournamentService }          from './services/tournament.service';
     declarations: [
         AppComponent,
         DashboardComponent,
-        TournamentDetailComponent,
         TournamentComponent,
-        TournamentSearchComponent
+        TournamentDetailComponent,
+        TournamentSearchComponent,
+        TournamentCreateComponent
     ],
     providers: [TournamentService],
     bootstrap: [AppComponent]

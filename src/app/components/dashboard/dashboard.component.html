@@ -1,4 +1,7 @@
 <h3>Top Tournaments</h3>
+<div>
+  <a md-raised-button routerLink="/create">Create Tournament</a>
+</div>
 <div class="grid grid-pad">
   <a *ngFor="let tournament of tournaments" [routerLink]="['/detail', tournament.id]" class="col-1-4">
     <div class="module tournament">

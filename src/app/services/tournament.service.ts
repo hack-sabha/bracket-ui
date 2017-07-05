@@ -45,9 +45,9 @@ export class TournamentService {
             .catch(this.handleError);
     }
 
-    create(name: string, type: number, sportId: number, participantCount: number): Promise<Tournament> {
+    create(tournament: Tournament): Promise<Tournament> {
         return this.http
-            .post(this.tournamentsUrl, JSON.stringify({ name: name, type: type, sportId: sportId, participantCount: participantCount }), { headers: this.headers })
+            .post(this.tournamentsUrl, JSON.stringify({ name: tournament.name, type: tournament.type, sportId: tournament.sportId, participantCount: tournament.participantCount }), { headers: this.headers })
             .toPromise()
             .then(res => res.json().data as Tournament)
             .catch(this.handleError);

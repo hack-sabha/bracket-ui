@@ -13,7 +13,6 @@ import { TournamentService }         from '../../services/tournament.service';
 })
 export class TournamentComponent implements OnInit {
     tournaments: Tournament[];
-    sports: Sport[];
     selectedTournament: Tournament;
 
     constructor(
@@ -24,22 +23,6 @@ export class TournamentComponent implements OnInit {
         this.tournamentService
             .getTournaments()
             .then(tournaments => this.tournaments = tournaments);
-    }
-
-    getSports(): void {
-        this.tournamentService
-            .getSports()
-            .then(sports => this.sports = sports);
-    }
-
-    add(name: string, type: number, sportId: number, participantCount: number): void {
-        name = name.trim();
-        if (!name) { return; }
-        this.tournamentService.create(name, type, sportId, participantCount)
-            .then(tournament => {
-                this.tournaments.push(tournament);
-                this.selectedTournament = null;
-            });
     }
 
     delete(tournament: Tournament): void {
@@ -53,7 +36,6 @@ export class TournamentComponent implements OnInit {
 
     ngOnInit(): void {
         this.getTournaments();
-        this.getSports();
     }
 
     onSelect(tournament: Tournament): void {

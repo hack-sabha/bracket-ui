@@ -1,0 +1,30 @@
+<div>
+  <form class="create-container" #createForm="ngForm" (ngSubmit)="onSubmit()">
+    <md-toolbar color="primary">Create Tournament</md-toolbar>
+    <md-input-container class="full-width">
+      <input mdInput placeholder="Tourname name" required [(ngModel)]="tournament.name" name="tournamentName">
+      <md-error>This field is required</md-error>
+    </md-input-container>
+    <md-input-container class="full-width">
+      <input mdInput placeholder="Tournament Type" disabled value="Single Elemenation" required name="tournamentType">
+      <md-error>This field is required</md-error>
+    </md-input-container>
+    <md-input-container class="full-width">
+      <input mdInput placeholder="Number of participants" required type="number" [(ngModel)]="tournament.participantCount" name="tournamentParticipants">
+      <md-error>This field is required</md-error>
+    </md-input-container>
+    <md-select placeholder="Select sport" [(ngModel)]="tournament.sportId" name="sport" required class="full-width">
+      <md-option *ngFor="let sport of sports" [value]="sport.sportId">
+        {{sport.name}}
+      </md-option>
+      <md-error>This field is required</md-error>
+    </md-select>
+
+    <button md-raised-button (click)="add(tournament);" [disabled]="!createForm.form.valid">
+      <i class="material-icons md-18">create</i>Create
+    </button>
+    <div *ngIf="tournament.type">
+      <p> Tournament successfully created {{tournament.name}} </p>
+    </div>
+  </form>
+</div>
